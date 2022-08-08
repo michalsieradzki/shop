@@ -16,7 +16,7 @@
       <%= print_stock(product.stock) %>
     </td>
     <td>
-      <%= link_to 'Pokaż', product %>
+      <%= button_to 'Dodaj do koszyka', order_items_path(product_id: product.id) %>
     </td>
     <td>
       <%= link_to 'Edytuj', edit_product_path(product) %>
