@@ -1,0 +1,21 @@
+<div id="<%= dom_id order %>">
+  <table>
+    <tr>
+      <th>Użytkownik:</th>
+      <td><%= order.user_id %></td>
+    </tr>
+    <tr>
+      <th>Ilość produktów:</th>
+      <td><%= order.order_items.count %></td>
+    </tr>
+    <tr>
+      <th>Status:</th>
+      <td><%= order.status %></td>
+    </tr>
+    <tr>
+      <th></th>
+      <td><%= link_to "Szczegóły", order %></td>
+    </tr>
+    
+  </table>
+</div>

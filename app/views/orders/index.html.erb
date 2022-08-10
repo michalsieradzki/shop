@@ -4,10 +4,8 @@
 
 <div id="orders">
   <% @orders.each do |order| %>
-    <%= render order %>
-    <p>
-      <%= link_to "Show this order", order %>
-    </p>
+    <%= render "order_short", order: order %>
+    <hr>
   <% end %>
 </div>
 

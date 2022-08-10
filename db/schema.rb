@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_08_114524) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_120709) do
   create_table "order_items", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

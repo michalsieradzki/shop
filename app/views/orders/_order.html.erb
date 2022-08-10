@@ -1,15 +1,40 @@
 <div id="<%= dom_id order %>">
-  <p>
-    <strong>User:</strong>
-    <%= order.user_id %>
-  </p>
-    <strong>Ilość zamówionych produktów:</strong>
-    <%= order.order_items.count %>
-  </p>
-
-  <p>
-    <strong>Status:</strong>
-    <%= order.status %>
-  </p>
-
+  <table>
+    <tr>
+      <th>Użytkownik:</th>
+      <td><%= order.user_id %></td>
+    </tr>
+    <tr>
+      <th>Ilość zamówionych produktów:</th>
+      <td><%= order.order_items.count %></td>
+    </tr>
+    <tr>
+      <th>Status:</th>
+      <td><%= order.status %></td>
+    </tr>
+    <tr>
+      <th>Items</th>
+      <th>Title</th>
+      <th>Quantinity</th>
+      <th>W magazynie</th>
+      <th>Unit Price</th>
+      <th>Subtotal</th>
+      <th>Edycja</th>
+      <th>Usuwanie</th>
+    </tr>
+      
+        <% order.order_items.each do |item| %>
+          <tr>
+              <td><%= image_tag asset_path(item.product.image_url) %></td>
+              <td><%= item.product.title %></td>
+              <td><%= link_to item.quantity, edit_order_item_path(item) %></td>
+              <td><%= print_stock(item.product.stock, item.quantity) %></td>
+              <td><%= print_price(item.product.price) %></td>
+              <td><%= print_price(item.product.price * item.quantity) %></td>
+              <td><%= button_to 'X', order_item_path(item), method: :delete %></td>
+          </tr>
+        <% end %>
+      
+  </table>
+    <%= button_to 'Usuń wszystkie pozycje', order, method: :delete %>
 </div>
