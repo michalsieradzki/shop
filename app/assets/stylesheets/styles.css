@@ -1012,3 +1012,29 @@ div.field_with_errors input {
 .error_messages ul li {
   font-weight: bold;
 }
+nav{
+  transform: translate(300px, -75px);
+  font-size: 1rem;
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  width: 70%;
+  
+}
+a.nav-link{
+ display:flex;
+ margin: 0.3rem;
+ color: white;
+ font-weight: 800;
+ text-decoration: none;
+ justify-self: right;
+}
+a:visited.nav-link{
+ color: white;
+}
+button.nav-link{
+  display:block;
+  position: fixed;
+  right: 30px;
+  padding: 10px
+}

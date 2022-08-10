@@ -1,12 +1,12 @@
-<p style="color: green"><%= notice %></p>
 
 <h1>Twoje zamówienie</h1>
 
 <%= render @order %>
 
 <div>
-  <%= link_to "Edit this order", edit_order_path(@order) %> |
-  <%= link_to "Back to orders", orders_path %>
+  <%= button_to "Usuń zamówienie", @order, method: :delete %>
+  <%= link_to "Edytuj zamówienie", edit_order_path(@order) %><br> |
+  <%= link_to "Wróć do listy zamówień", orders_path %><br>
 
-  <%= button_to "Destroy this order", @order, method: :delete %>
+  <%= link_to "Wróć do listy produktów", products_path %>
 </div>

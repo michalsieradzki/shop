@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   before_action :set_order_item, only: %i[ show edit destroy ]
   before_action :load_order, only: [:create]
+  before_action :authenticate_user!
 
   def index
     @order_items = OrderItem.all
