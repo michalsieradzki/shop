@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :set_order, only: %i[ show edit update destroy confirm ]
   before_action :authenticate_user!
 
   # GET /orders or /orders.json
@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
-
+    
     respond_to do |format|
       if @order.save
         format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
@@ -38,9 +38,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to order_url(@order), notice: "Order was successfully updated." }
-        format.json { render :show, status: :ok, location: @order }
+      if @order.update(order_params.merge(status: 'submited'))
+        format.html { redirect_to confirm_order_path(@order.id) }
+        #format.html { redirect_to order_url(@order), notice: "Zamówienie zaktualizowane" }
+       
+        session[:order_id] = nil
+
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -57,7 +60,9 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def confirm
+  
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
@@ -66,6 +71,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id, :status)
+      params.require(:order).permit(:user_id, :status, :address_id)
     end
 end

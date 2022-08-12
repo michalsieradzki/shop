@@ -1,8 +1,25 @@
 
-<h1>Twoje zamówienie</h1>
+  <h1>Twoje zamówienie</h1>
 
-<%= render @order %>
+  <%= render @order %>
 
+  <tr>
+    <th>Shipping To:</th>
+    <td>
+      <%= form_for @order do |f| %>
+        <%= f.select :address_id, current_user.addresses.collect{|a| [a.line1.to_s, a.id]} %>
+    </td>
+    <td>
+      <%= link_to 'Dodaj nowy adres', new_address_path %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= f.submit "Wyślij zamówienie" %>
+    </td>
+  </tr>
+      <% end %>  
+ </table>
 <div>
   <%= button_to "Usuń zamówienie", @order, method: :delete %>
   <%= link_to "Edytuj zamówienie", edit_order_path(@order) %><br> |

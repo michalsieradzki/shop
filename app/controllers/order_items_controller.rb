@@ -12,6 +12,7 @@ class OrderItemsController < ApplicationController
 
   # POST /order_items or /order_items.json
   def create
+    
     @order_item = @order.order_items.find_or_create_by(product_id: params[:product_id])
 
     @order_item.update(quantity: @order_item.quantity+1)
@@ -69,11 +70,10 @@ class OrderItemsController < ApplicationController
     end
 
     def load_order
-      begin
-        @order = Order.find(session[:order_id])
-      rescue ActiveRecord::RecordNotFound
-        @order = Order.create(status: "unsubmitted")
-        session[:order_id] = @order.id
-      end    
+      @order = Order.where(user_id: current_user.id).first_or_create(status: 'unsubmitted')   
+      
+          session[:order_id] = @order.id
+
+    
     end
 end

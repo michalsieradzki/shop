@@ -13,6 +13,10 @@
       <td><%= order.status %></td>
     </tr>
     <tr>
+      <th>Czyść:</th>
+      <td><%= button_to 'Usuń wszystkie pozycje', order, method: :delete %></td>
+    </tr>
+    <tr>
       <th>Items</th>
       <th>Title</th>
       <th>Quantinity</th>
@@ -35,6 +39,6 @@
           </tr>
         <% end %>
       
-  </table>
-    <%= button_to 'Usuń wszystkie pozycje', order, method: :delete %>
+ 
+    
 </div>
